@@ -5,7 +5,7 @@
   <div class="container-coffee">
     <div class="grid gap-12 lg:grid-cols-12">
       <div class="lg:col-span-4">
-        <a href="{{ url('/') }}" class="inline-block" aria-label="{{ site.title }}">
+        <a href="{{ url(site.home) }}" class="inline-block" aria-label="{{ site.title }}">
           {%- if site.coffee.logo|default(null) %}
           {{ coffee.image(site.coffee.logo, {alt: site.title, class: 'h-12 w-auto'}) }}
           {%- else %}

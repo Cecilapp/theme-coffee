@@ -5,7 +5,7 @@
 <header class="relative isolate flex min-h-svh items-center overflow-hidden bg-ink pt-24 text-cream">
   <div class="container-coffee animate-fade-up text-center">
     <p class="heading text-[10rem] leading-none text-coffee sm:text-[16rem]">404</p>
-    <h1 class="heading-lg mt-4">{{ page.title|default('Page not found'|trans) }}</h1>
+    <h1 class="heading-lg mt-4">{{ page.title|default('Page not found')|trans }}</h1>
     <div class="mx-auto mt-6 max-w-xl text-lg text-cream/75">
       {%- if page.content is not empty %}
       {{ page.content }}
@@ -14,7 +14,7 @@
       {%- endif %}
     </div>
     <div class="mt-10 flex justify-center">
-      <a href="{{ url('/') }}" class="btn-primary">{{ 'Back to home page'|trans }}</a>
+      <a href="{{ url(site.home) }}" class="btn-primary">{{ 'Back to home page'|trans }}</a>
     </div>
   </div>
 </header>

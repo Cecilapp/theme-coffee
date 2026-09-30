@@ -63,7 +63,7 @@
 <div class="flex flex-wrap gap-3">
     {%- for button in buttons %}
       {%- set external = button.url|default('') starts with 'http' %}
-  <a href="{{ url(button.url|default('/')) }}" class="{{ styles[button.style|default(default_style)]|default('btn-primary') }}"{% if external %} target="_blank" rel="noopener"{% endif %}>
+  <a href="{{ url(button.url|default(site.home)) }}" class="{{ styles[button.style|default(default_style)]|default('btn-primary') }}"{% if external %} target="_blank" rel="noopener"{% endif %}>
     {{- button.label|default('Read more'|trans) -}}
     {{- _self.icon(external ? 'external' : 'arrow-right') -}}
   </a>

@@ -41,7 +41,7 @@ languages:
         header:
           button:
             label: Contact
-            url: /fr/contact/
+            url: /contact/
         company: |
           **Acme Group SA**
           12 rue du Café, 75011 Paris, France
