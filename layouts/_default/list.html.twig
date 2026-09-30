@@ -1,5 +1,5 @@
 {#- List of pages (section, term): header, content, pages grid, pagination, then blocks -#}
-{%- extends '_default/page.html.twig' %}
+{%- extends ['page.html.twig', '_default/page.html.twig'] %}
 
 {%- block content %}
   {%- set pages = page.paginator.pages is defined ? page.paginator.pages : (page.pages is defined ? page.pages.showable : []) %}
