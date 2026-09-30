@@ -15,5 +15,5 @@ blocks:
   - type: cta
     title: Pas d'offre pour vous ?
     text: Envoyez-nous une candidature spontanée.
-    buttons: {label: Nous contacter, url: /fr/contact/, style: light}
+    buttons: {label: Nous contacter, url: /contact/, style: light}
 ---
