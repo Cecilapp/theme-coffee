@@ -41,34 +41,34 @@ languages:
         header:
           button:
             label: Contact
-            url: /contact/
+            url: /fr/contact/
         company: |
           **Acme Group SA**
           12 rue du Café, 75011 Paris, France
           RCS Paris 123 456 789
       menus:
         main:
-          - {id: about, name: À propos, url: /about/, weight: 10}
-          - {id: products, name: Produits, url: /products/, weight: 20}
-          - {id: company, name: Groupe, url: /about/, weight: 30}
-          - {id: news, name: Actualités, url: /news/, weight: 40}
-          - {id: careers, name: Carrières, url: /careers/, weight: 50}
+          - {id: about, name: À propos, url: /fr/about/, weight: 10}
+          - {id: products, name: Produits, url: /fr/products/, weight: 20}
+          - {id: company, name: Groupe, url: /fr/about/, weight: 30}
+          - {id: news, name: Actualités, url: /fr/news/, weight: 40}
+          - {id: careers, name: Carrières, url: /fr/careers/, weight: 50}
         company:
-          - {id: teams, name: Nos équipes, url: /about/#teams, weight: 10}
-          - {id: figures, name: Chiffres clés, url: /about/#figures, weight: 20}
-          - {id: values, name: Nos valeurs, url: /about/#values, weight: 30}
+          - {id: teams, name: Nos équipes, url: /fr/about/#teams, weight: 10}
+          - {id: figures, name: Chiffres clés, url: /fr/about/#figures, weight: 20}
+          - {id: values, name: Nos valeurs, url: /fr/about/#values, weight: 30}
         footer:
-          - {id: explore, name: Explorer, url: /, weight: 10}
-          - {id: group, name: Groupe, url: /about/, weight: 20}
+          - {id: explore, name: Explorer, url: /fr/, weight: 10}
+          - {id: group, name: Groupe, url: /fr/about/, weight: 20}
         explore:
-          - {id: products, name: Produits, url: /products/, weight: 10}
-          - {id: news, name: Actualités, url: /news/, weight: 20}
-          - {id: careers, name: Carrières, url: /careers/, weight: 30}
+          - {id: products, name: Produits, url: /fr/products/, weight: 10}
+          - {id: news, name: Actualités, url: /fr/news/, weight: 20}
+          - {id: careers, name: Carrières, url: /fr/careers/, weight: 30}
         group:
-          - {id: about, name: À propos, url: /about/, weight: 10}
-          - {id: contact, name: Contact, url: /contact/, weight: 20}
+          - {id: about, name: À propos, url: /fr/about/, weight: 10}
+          - {id: contact, name: Contact, url: /fr/contact/, weight: 20}
         legal:
-          - {id: privacy, name: Confidentialité, url: /privacy/, weight: 10}
+          - {id: privacy, name: Confidentialité, url: /fr/privacy/, weight: 10}
 menus:
   main:
     - {id: about, name: About, url: /about/, weight: 10}
