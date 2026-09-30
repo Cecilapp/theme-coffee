@@ -136,6 +136,16 @@ blocks:
 
 Add your own block by creating `layouts/partials/blocks/<type>.html.twig` in your site: it receives `block`, `theme` (`{classes, dark}`) and `anchor`.
 
+### Internationalization
+
+UI strings are translatable; English and French translations are included in [`translations/`](translations/).
+
+To add a language, create `translations/messages.<locale>.yaml` in your site, or extract the strings with:
+
+```bash
+cecil util:translations:extract --locale=<locale> --save --theme=coffee
+```
+
 ## Development
 
 ### Build the CSS
