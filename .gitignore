@@ -1,5 +1,2 @@
-vendor/
 .cache/
-demo/_site/
-demo/.cache/
-demo/themes/
+vendor/
