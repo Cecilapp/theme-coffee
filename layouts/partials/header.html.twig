@@ -1,0 +1,101 @@
+{#- Site header: logo, main menu (with dropdowns), language switcher, mobile menu.
+    Dropdown: a menu named after a `main` entry's id holds its children, e.g. `menus.company` for entry `company`. -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+{%- set current = url(page) -%}
+{%- set home = url(site.home) -%}
+{%- set menu = site.menus.main is defined ? site.menus.main|sort_by_weight : [] -%}
+{%- set cta = site.coffee.header.button|default(null) -%}
+<header data-header class="{{ site.coffee.header.sticky|default(true) ? 'fixed' : 'absolute' }} inset-x-0 top-0 z-50 text-cream transition duration-300">
+  <div class="container-coffee flex h-20 items-center justify-between gap-6">
+    {#- logo #}
+    <a href="{{ home }}" class="shrink-0" aria-label="{{ site.title }}"{% if page.type == 'homepage' %} aria-current="page"{% endif %}>
+      {%- if site.coffee.logo|default(null) %}
+      {{ coffee.image(site.coffee.logo, {alt: site.title, class: 'h-10 w-auto', loading: 'eager'}) }}
+      {%- else %}
+      <span class="heading text-2xl">{{ site.title }}</span>
+      {%- endif %}
+    </a>
+    {#- desktop navigation #}
+    <nav class="hidden lg:block" aria-label="{{ 'Main menu'|trans }}">
+      <ul class="flex items-center gap-1">
+        {%- for entry in menu %}
+          {%- set href = url(entry) %}
+          {%- set active = href == current or (href != home and current starts with href) %}
+          {%- set children = site.menus[entry.id] is defined ? site.menus[entry.id]|sort_by_weight : [] %}
+        <li class="group/dd relative"{% if children|length %} data-dropdown{% endif %}>
+          {%- if children|length %}
+          <div>
+            <button type="button" aria-expanded="false" aria-haspopup="true" class="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wider transition hover:bg-cream/10{% if active %} text-coffee-light{% endif %}">
+              {{- entry.name }} {{ coffee.icon('chevron-down', 'size-4 transition group-hover/dd:rotate-180') -}}
+            </button>
+            <div class="invisible absolute left-0 top-full min-w-60 pt-3 opacity-0 transition duration-200 group-hover/dd:visible group-hover/dd:opacity-100 group-data-open/dd:visible group-data-open/dd:opacity-100">
+              <ul class="rounded-2xl bg-cream p-2 text-ink shadow-2xl shadow-black/30">
+                <li><a href="{{ href }}" class="block rounded-xl px-4 py-2.5 text-sm font-bold uppercase tracking-wider transition hover:bg-sand"{% if href == current %} aria-current="page"{% endif %}>{{ entry.name }}</a></li>
+                {%- for child in children %}
+                  {%- set child_href = url(child) %}
+                <li><a href="{{ child_href }}" class="block rounded-xl px-4 py-2.5 text-sm font-medium transition hover:bg-sand hover:text-coffee-dark"{% if child_href == current %} aria-current="page"{% endif %}>{{ child.name }}</a></li>
+                {%- endfor %}
+              </ul>
+            </div>
+          </div>
+          {%- else %}
+          <a href="{{ href }}" class="block rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wider transition hover:bg-cream/10{% if active %} text-coffee-light{% endif %}"{% if href == current %} aria-current="page"{% endif %}>{{ entry.name }}</a>
+          {%- endif %}
+        </li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    <div class="flex items-center gap-2">
+      {#- language switcher #}
+      {%- if page.translations|default([])|length %}
+      <ul class="hidden items-center gap-1 sm:flex" aria-label="{{ 'Languages'|trans }}">
+        {{- coffee.icon('globe', 'size-4 opacity-70') }}
+        {%- for translation in page.translations %}
+        <li><a href="{{ url(translation) }}" hreflang="{{ translation.language }}" lang="{{ translation.language }}" class="rounded-full px-2 py-1 text-sm font-bold uppercase transition hover:bg-cream/10">{{ translation.language }}</a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- if cta %}
+      <div class="hidden sm:block">{{ coffee.buttons(cta) }}</div>
+      {%- endif %}
+      {#- mobile menu toggle #}
+      <button type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" class="group/toggle rounded-full p-2 transition hover:bg-cream/10 lg:hidden">
+        <span class="sr-only">{{ 'Menu'|trans }}</span>
+        {{- coffee.icon('menu', 'size-7 group-aria-expanded/toggle:hidden') }}
+        {{- coffee.icon('close', 'hidden size-7 group-aria-expanded/toggle:block') }}
+      </button>
+    </div>
+  </div>
+  {#- mobile navigation #}
+  <nav id="mobile-menu" hidden class="h-[calc(100svh-5rem)] overflow-y-auto border-t border-cream/10 lg:hidden" aria-label="{{ 'Main menu'|trans }}">
+    <ul class="container-coffee flex flex-col py-6">
+      {%- for entry in menu %}
+        {%- set href = url(entry) %}
+        {%- set children = site.menus[entry.id] is defined ? site.menus[entry.id]|sort_by_weight : [] %}
+      <li class="border-b border-cream/10">
+        {%- if children|length %}
+        <details class="group/details">
+          <summary class="heading flex cursor-pointer list-none items-center justify-between py-4 text-3xl">
+            {{- entry.name }} {{ coffee.icon('chevron-down', 'size-6 transition group-open/details:rotate-180') -}}
+          </summary>
+          <ul class="pb-4 pl-4">
+            <li><a href="{{ href }}" class="block py-2 text-lg font-bold">{{ entry.name }}</a></li>
+            {%- for child in children %}
+            <li><a href="{{ url(child) }}" class="block py-2 text-lg text-cream/80 hover:text-cream">{{ child.name }}</a></li>
+            {%- endfor %}
+          </ul>
+        </details>
+        {%- else %}
+        <a href="{{ href }}" class="heading block py-4 text-3xl"{% if href == current %} aria-current="page"{% endif %}>{{ entry.name }}</a>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    <div class="container-coffee flex flex-wrap items-center gap-4 pb-10">
+      {%- for translation in page.translations|default([]) %}
+      <a href="{{ url(translation) }}" hreflang="{{ translation.language }}" class="btn-outline">{{ site.language.name(translation.language) }}</a>
+      {%- endfor %}
+      {%- if cta %}{{ coffee.buttons(cta) }}{% endif %}
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,34 @@
+{#- Renders a list of blocks declared in front matter (`blocks:`).
+    Each block has a `type` (a partial in `partials/blocks/`) and optional common keys:
+    - `id`: HTML anchor
+    - `theme`: dark | night | cream | sand | coffee
+    - `title`, `kicker`, `text` (Markdown), `buttons` -#}
+{%- set themes = {
+  'dark': {classes: 'bg-ink text-cream', dark: true},
+  'night': {classes: 'bg-night text-cream', dark: true},
+  'coffee': {classes: 'bg-coffee text-cream', dark: true},
+  'cream': {classes: 'bg-cream text-ink', dark: false},
+  'sand': {classes: 'bg-sand text-ink', dark: false},
+} -%}
+{%- set defaults = {
+  'hero': 'dark',
+  'cards': 'dark',
+  'logos': 'cream',
+  'split': 'sand',
+  'news': 'cream',
+  'cta': 'coffee',
+  'stats': 'night',
+  'text': 'cream',
+  'features': 'dark',
+} -%}
+{%- for block in blocks|default([]) %}
+  {%- if block.type is defined and block.enabled|default(true) %}
+    {%- set theme = themes[block.theme|default(defaults[block.type]|default('cream'))]|default(themes.cream) %}
+    {{- include('partials/blocks/' ~ block.type ~ '.html.twig', {
+      block: block,
+      theme: theme,
+      anchor: block.id|default(block.type ~ '-' ~ loop.index),
+      first: loop.first,
+    }, ignore_missing = true) }}
+  {%- endif %}
+{%- endfor %}

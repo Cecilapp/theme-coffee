@@ -1,0 +1,66 @@
+{#- Hero: full-width slider (or single slide).
+    block.slides: [{kicker, title, text, image, logo, buttons}]
+    block.height: full (default) | large
+    block.autoplay: delay in ms (0 to disable, default 7000) -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+{%- set slides = block.slides|default([block]) -%}
+{%- set height = block.height|default('full') == 'full' ? 'min-h-svh' : 'min-h-[75svh]' -%}
+<section id="{{ anchor }}" class="relative isolate overflow-hidden {{ theme.classes }}" aria-roledescription="carousel" aria-label="{{ block.title|default('Featured'|trans) }}" data-slider data-autoplay="{{ block.autoplay|default(7000) }}">
+  <div class="flex snap-x snap-mandatory overflow-x-auto" data-slider-track>
+    {%- for slide in slides %}
+    <div class="relative flex w-full shrink-0 snap-start items-end {{ height }} pt-28 pb-[calc(var(--radius-block)+5rem)]" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} / {{ slides|length }}">
+      {%- if slide.image|default(null) %}
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        {{ coffee.image(slide.image, {width: 1920, class: 'size-full object-cover animate-ken-burns', loading: loop.first ? 'eager' : 'lazy'}) }}
+        <div class="absolute inset-0 bg-linear-to-t from-ink via-ink/50 to-ink/20"></div>
+        <div class="absolute inset-0 bg-linear-to-r from-ink/70 to-transparent"></div>
+      </div>
+      {%- endif %}
+      <div class="container-coffee">
+        <div class="max-w-4xl{% if loop.first %} animate-fade-up{% endif %}">
+          {%- if slide.logo|default(null) %}
+          {{ coffee.image(slide.logo, {alt: slide.title|default(''), class: 'mb-8 h-24 w-auto sm:h-32', loading: loop.first ? 'eager' : 'lazy'}) }}
+          {%- endif %}
+          {%- if slide.kicker|default(null) %}
+          <p class="kicker mb-4 text-coffee-light">{{ slide.kicker }}</p>
+          {%- endif %}
+          {%- if slide.title|default(null) %}
+          {%- if loop.first and first %}
+          <h1 class="heading-xl">{{ slide.title }}</h1>
+          {%- else %}
+          <h2 class="heading-xl">{{ slide.title }}</h2>
+          {%- endif %}
+          {%- endif %}
+          {%- if slide.text|default(null) %}
+          <div class="mt-6 max-w-2xl text-lg text-cream/85 sm:text-xl">{{ slide.text|markdown_to_html }}</div>
+          {%- endif %}
+          {%- if slide.buttons|default(null) %}
+          <div class="mt-10">{{ coffee.buttons(slide.buttons) }}</div>
+          {%- endif %}
+        </div>
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+  {%- if slides|length > 1 %}
+  <div class="pointer-events-none absolute inset-x-0 bottom-[calc(var(--radius-block)+1.5rem)]">
+    <div class="container-coffee flex items-center justify-between gap-6">
+      <div class="pointer-events-auto flex gap-2">
+        {%- for slide in slides %}
+        <button type="button" data-slider-dot aria-current="{{ loop.first ? 'true' : 'false' }}" class="h-1.5 w-8 rounded-full bg-cream/30 transition-all hover:bg-cream/60 aria-[current=true]:w-14 aria-[current=true]:bg-coffee">
+          <span class="sr-only">{{ 'Slide %number%'|trans({'%number%': loop.index}) }}</span>
+        </button>
+        {%- endfor %}
+      </div>
+      <div class="pointer-events-auto flex gap-2">
+        <button type="button" data-slider-prev class="flex size-12 items-center justify-center rounded-full border-2 border-cream/30 transition hover:border-cream hover:bg-cream hover:text-ink">
+          <span class="sr-only">{{ 'Previous'|trans }}</span>{{ coffee.icon('arrow-left') }}
+        </button>
+        <button type="button" data-slider-next class="flex size-12 items-center justify-center rounded-full border-2 border-cream/30 transition hover:border-cream hover:bg-cream hover:text-ink">
+          <span class="sr-only">{{ 'Next'|trans }}</span>{{ coffee.icon('arrow-right') }}
+        </button>
+      </div>
+    </div>
+  </div>
+  {%- endif %}
+</section>

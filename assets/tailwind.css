@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@source '../layouts';
+
+/* Design tokens */
+@theme {
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+  --color-ink: #040606;
+  --color-night: #041025;
+  --color-cream: #fffcf1;
+  --color-sand: #ece8e0;
+  --color-stone: #d0cec8;
+  --color-coffee: #ab744b;
+  --color-coffee-light: #c99a74;
+  --color-coffee-dark: #7d5234;
+
+  --radius-block: 2.5rem;
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-ken-burns: ken-burns 12s ease-out both;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(2rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ken-burns {
+    from { transform: scale(1.08); }
+    to { transform: scale(1); }
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth antialiased;
+  }
+  body {
+    @apply bg-ink font-sans text-cream;
+  }
+  ::selection {
+    @apply bg-coffee text-cream;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-coffee;
+  }
+}
+
+/* Headings: heavy, uppercase, tight — the signature of the theme */
+@utility heading {
+  @apply font-black uppercase leading-[0.95] tracking-tight text-balance;
+}
+@utility heading-xl {
+  @apply heading text-5xl sm:text-6xl lg:text-8xl;
+}
+@utility heading-lg {
+  @apply heading text-4xl sm:text-5xl lg:text-6xl;
+}
+@utility heading-md {
+  @apply heading text-2xl sm:text-3xl;
+}
+@utility kicker {
+  @apply text-sm font-semibold uppercase tracking-[0.2em] text-coffee;
+}
+
+/* Layout */
+@utility container-coffee {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+}
+
+/* Blocks stacked like cards, overlapping the previous one */
+@utility block-stack {
+  @apply relative z-10 -mt-(--radius-block) rounded-t-(--radius-block) pt-[calc(var(--radius-block)+3rem)];
+}
+
+/* Buttons */
+@utility btn {
+  @apply inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase tracking-wider transition duration-300;
+  & svg {
+    @apply size-4 transition-transform duration-300;
+  }
+  &:hover svg {
+    @apply translate-x-1;
+  }
+}
+@utility btn-primary {
+  @apply btn bg-coffee text-cream hover:bg-coffee-dark;
+}
+@utility btn-light {
+  @apply btn bg-cream text-ink hover:bg-sand;
+}
+@utility btn-dark {
+  @apply btn bg-ink text-cream hover:bg-night;
+}
+@utility btn-outline {
+  @apply btn border-2 border-current hover:bg-current/10;
+}
+
+/* Header: transparent over the hero, opaque when scrolled or when the menu is open */
+[data-header][data-scrolled='true'],
+[data-header][data-menu-open='true'],
+[data-header][data-solid='true'] {
+  @apply bg-ink/95 shadow-lg shadow-black/20 backdrop-blur;
+}
+
+/* Scroll reveal (enabled by JS only, respects reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    @apply translate-y-8 opacity-0 transition duration-700 ease-out;
+  }
+  .js [data-reveal].is-visible {
+    @apply translate-y-0 opacity-100;
+  }
+}
+
+/* Slider: hide native scrollbar */
+[data-slider-track] {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

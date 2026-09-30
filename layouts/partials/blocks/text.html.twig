@@ -1,0 +1,16 @@
+{#- Text: free Markdown content. block: {kicker, title, content, align: left | center} -#}
+<section id="{{ anchor }}" class="block-stack pb-24 {{ theme.classes }}">
+  <div class="container-coffee">
+    <div class="mx-auto max-w-3xl{% if block.align|default('left') == 'center' %} text-center{% endif %}" data-reveal>
+      {%- if block.kicker|default(null) %}
+      <p class="kicker mb-3">{{ block.kicker }}</p>
+      {%- endif %}
+      {%- if block.title|default(null) %}
+      <h2 class="heading-lg mb-8">{{ block.title }}</h2>
+      {%- endif %}
+      <div class="prose prose-lg max-w-none prose-headings:font-black prose-headings:uppercase prose-a:text-coffee {{ theme.dark ? 'prose-invert' : 'prose-neutral' }}">
+        {{- block.content|default(block.text|default(''))|markdown_to_html -}}
+      </div>
+    </div>
+  </div>
+</section>

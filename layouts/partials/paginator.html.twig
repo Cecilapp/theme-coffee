@@ -1,0 +1,14 @@
+{#- Pagination links -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+{%- if page.paginator is defined and page.paginator and page.paginator.count|default(1) > 1 %}
+  {%- set links = page.paginator.links %}
+<nav class="mt-16 flex items-center justify-center gap-3" aria-label="{{ 'Pagination'|trans }}">
+  {%- if links.prev is defined %}
+  <a href="{{ url(links.prev) }}" rel="prev" class="btn-outline">{{ coffee.icon('arrow-left') }} {{ 'Previous'|trans }}</a>
+  {%- endif %}
+  <span class="px-4 text-sm font-bold uppercase tracking-widest opacity-70">{{ page.paginator.current }} / {{ page.paginator.count }}</span>
+  {%- if links.next is defined %}
+  <a href="{{ url(links.next) }}" rel="next" class="btn-outline">{{ 'Next'|trans }} {{ coffee.icon('arrow-right') }}</a>
+  {%- endif %}
+</nav>
+{%- endif %}

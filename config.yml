@@ -1,0 +1,14 @@
+# Coffee theme default configuration
+# Override any of these values in your site's `config.yml`.
+pages:
+  body:
+    images:
+      class: rounded-2xl
+coffee:
+  logo: ~          # path to a logo in `assets/` (e.g. `logo.svg`); the site title is displayed if empty
+  header:
+    sticky: true   # the header stays on top and becomes opaque on scroll
+  dated_sections: [news, blog] # sections whose pages display their date
+  socials: []      # list of `{name, url}`; known names get an icon: x, bluesky, facebook, instagram, linkedin, youtube, github, mastodon
+  company: ~       # free text (Markdown) displayed in the footer (address, registration number, etc.)
+  copyright: ~     # copyright holder name, defaults to the site title

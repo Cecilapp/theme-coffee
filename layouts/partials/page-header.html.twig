@@ -1,0 +1,29 @@
+{#- Page header: title, kicker and description over the page image (if any) -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+{%- set image = page.image|default(null) -%}
+{%- set kicker = page.kicker|default(null) -%}
+{%- if kicker is null and page.type == 'page' and page.date|default(null) and page.section in site.coffee.dated_sections|default([]) -%}
+  {%- set kicker = page.date|format_date('long') -%}
+{%- endif -%}
+<header class="relative isolate flex min-h-[55svh] items-end overflow-hidden bg-ink pt-32 pb-[calc(var(--radius-block)+3rem)] text-cream">
+  {%- if image %}
+  <div class="absolute inset-0 -z-10">
+    {{ coffee.image(image, {width: 1920, class: 'size-full object-cover opacity-60 animate-ken-burns', loading: 'eager'}) }}
+    <div class="absolute inset-0 bg-linear-to-t from-ink via-ink/40 to-ink/10"></div>
+  </div>
+  {%- endif %}
+  <div class="container-coffee animate-fade-up">
+    {%- if page.parent is defined and page.parent and page.parent.type != 'homepage' %}
+    <a href="{{ url(page.parent) }}" class="mb-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-cream/70 transition hover:text-cream">
+      {{- coffee.icon('arrow-left', 'size-4') }} {{ page.parent.title -}}
+    </a>
+    {%- endif %}
+    {%- if kicker %}
+    <p class="kicker mb-4">{{ kicker }}</p>
+    {%- endif %}
+    <h1 class="heading-xl max-w-5xl">{{ page.title }}</h1>
+    {%- if page.description|default(null) %}
+    <p class="mt-6 max-w-2xl text-lg text-cream/80 sm:text-xl">{{ page.description }}</p>
+    {%- endif %}
+  </div>
+</header>

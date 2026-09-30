@@ -1,0 +1,22 @@
+{#- Common heading of a block: kicker, title, text and buttons.
+    Options: `align` (left|center), `buttons` (false to hide them) -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+{%- set center = align|default('left') == 'center' -%}
+{%- if block.kicker|default(null) or block.title|default(null) or block.text|default(null) %}
+<div class="mb-12 flex flex-col gap-6 {{ center ? 'items-center text-center mx-auto max-w-3xl' : 'md:flex-row md:items-end md:justify-between' }}" data-reveal>
+  <div class="max-w-3xl">
+    {%- if block.kicker|default(null) %}
+    <p class="kicker mb-3">{{ block.kicker }}</p>
+    {%- endif %}
+    {%- if block.title|default(null) %}
+    <h2 class="heading-lg">{{ block.title }}</h2>
+    {%- endif %}
+    {%- if block.text|default(null) %}
+    <div class="mt-5 space-y-4 text-lg {{ theme.dark ? 'text-cream/75' : 'text-ink/70' }}">{{ block.text|markdown_to_html }}</div>
+    {%- endif %}
+  </div>
+  {%- if buttons|default(true) and block.buttons|default(null) %}
+  <div class="shrink-0">{{ coffee.buttons(block.buttons, theme.dark ? 'light' : 'dark') }}</div>
+  {%- endif %}
+</div>
+{%- endif %}

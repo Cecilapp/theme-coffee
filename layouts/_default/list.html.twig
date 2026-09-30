@@ -1,0 +1,32 @@
+{#- List of pages (section, term): header, content, pages grid, pagination, then blocks -#}
+{%- extends '_default/page.html.twig' %}
+
+{%- block content %}
+  {%- set pages = page.paginator.pages is defined ? page.paginator.pages : (page.pages is defined ? page.pages.showable : []) %}
+  {%- set dated = page.section in site.coffee.dated_sections|default([]) or page.type == 'term' %}
+<section class="block-stack pb-24 {{ dated ? 'bg-cream text-ink' : 'bg-ink text-cream' }}">
+  <div class="container-coffee">
+    {%- if page.content is not empty %}
+    <div class="prose prose-lg mx-auto mb-16 {{ dated ? 'prose-neutral' : 'prose-invert' }} prose-a:text-coffee">
+      {{ page.content }}
+    </div>
+    {%- endif %}
+    {%- if pages|length %}
+    <ul class="grid gap-8 sm:grid-cols-2 {{ dated ? 'lg:grid-cols-3' : 'gap-5 lg:grid-cols-4' }}">
+      {%- for p in pages %}
+      <li data-reveal style="transition-delay: {{ (loop.index0 % 4) * 80 }}ms">
+        {%- if dated %}
+        {{- include('partials/news-card.html.twig', {p: p, dark: false}) }}
+        {%- else %}
+        {{- include('partials/card.html.twig', {item: {title: p.title, text: p.description|default(null), image: p.image|default(null), url: p, label: p.kicker|default(null)}}) }}
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- else %}
+    <p class="text-center text-lg opacity-70">{{ 'Nothing here yet.'|trans }}</p>
+    {%- endif %}
+    {{- include('partials/paginator.html.twig') }}
+  </div>
+</section>
+{%- endblock content %}

@@ -1,0 +1,27 @@
+{#- Split: text and image side by side (about, presentation…).
+    block: {kicker, title, text, image, alt, buttons, reverse} -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+<section id="{{ anchor }}" class="block-stack pb-24 {{ theme.classes }}">
+  <div class="container-coffee grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    <div class="{{ block.reverse|default(false) ? 'lg:order-last' : '' }}" data-reveal>
+      {%- if block.kicker|default(null) %}
+      <p class="kicker mb-3">{{ block.kicker }}</p>
+      {%- endif %}
+      {%- if block.title|default(null) %}
+      <h2 class="heading-lg">{{ block.title }}</h2>
+      {%- endif %}
+      {%- if block.text|default(null) %}
+      <div class="mt-6 space-y-4 text-lg {{ theme.dark ? 'text-cream/80' : 'text-ink/75' }}">{{ block.text|markdown_to_html }}</div>
+      {%- endif %}
+      {%- if block.buttons|default(null) %}
+      <div class="mt-10">{{ coffee.buttons(block.buttons, theme.dark ? 'light' : 'dark') }}</div>
+      {%- endif %}
+    </div>
+    {%- if block.image|default(null) %}
+    <div class="relative" data-reveal>
+      <div class="absolute -inset-3 rotate-2 rounded-[2rem] bg-coffee/30"></div>
+      {{ coffee.image(block.image, {width: 1200, alt: block.alt|default(''), class: 'relative aspect-[4/3] w-full rounded-[2rem] object-cover shadow-2xl shadow-black/20'}) }}
+    </div>
+    {%- endif %}
+  </div>
+</section>

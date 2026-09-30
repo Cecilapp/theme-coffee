@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{- include('partials/metatags.html.twig') }}
+    <script>document.documentElement.classList.add('js')</script>
+    {%- set font = asset('fonts/outfit.woff2', {fingerprint: true}) %}
+    <link rel="preload" href="{{ url(font) }}" as="font" type="font/woff2" crossorigin>
+    <style>@font-face{font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;src:url('{{ url(font) }}') format('woff2')}</style>
+    {{ html(asset('styles.css')) }}
+    {{ html(asset('coffee.js'), {defer: true}) }}
+    {%- block head %}{% endblock %}
+  </head>
+  <body class="flex min-h-svh flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-full focus:bg-coffee focus:px-4 focus:py-2 focus:text-cream">{{ 'Skip to content'|trans }}</a>
+    {{- include('partials/header.html.twig') }}
+    <main id="main" class="flex-1">
+      {%- block main %}
+        {%- block hero %}
+          {#- a page starting with a hero block doesn't need a header #}
+          {%- if (page.blocks[0].type|default(null)) != 'hero' %}
+          {{- include('partials/page-header.html.twig') }}
+          {%- endif %}
+        {%- endblock hero %}
+        {%- block content %}
+          {%- if page.content is not empty %}
+        <section class="block-stack bg-cream pb-24 text-ink">
+          <div class="container-coffee">
+            <div class="prose prose-lg prose-neutral mx-auto prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-a:text-coffee prose-a:underline-offset-4 hover:prose-a:text-coffee-dark prose-blockquote:border-coffee prose-img:rounded-2xl">
+              {{ page.content }}
+            </div>
+            {%- block after_content %}
+              {{- include('partials/page-navigation.html.twig') }}
+            {%- endblock %}
+          </div>
+        </section>
+          {%- endif %}
+        {%- endblock content %}
+        {%- block blocks %}
+          {{- include('partials/blocks.html.twig', {blocks: page.blocks|default([])}) }}
+        {%- endblock blocks %}
+      {%- endblock main %}
+    </main>
+    {{- include('partials/footer.html.twig') }}
+  </body>
+</html>

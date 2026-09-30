@@ -1,0 +1,25 @@
+{#- Call to action: a big statement over an optional background image (careers, contact…).
+    block: {kicker, title, text, image, buttons} -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+<section id="{{ anchor }}" class="block-stack isolate overflow-hidden pb-32 {{ theme.classes }}">
+  {%- if block.image|default(null) %}
+  <div class="absolute inset-0 -z-10">
+    {{ coffee.image(block.image, {width: 1920, class: 'size-full object-cover opacity-35 mix-blend-luminosity'}) }}
+    <div class="absolute inset-0 bg-linear-to-b from-transparent to-ink/50"></div>
+  </div>
+  {%- endif %}
+  <div class="container-coffee flex flex-col items-center py-12 text-center" data-reveal>
+    {%- if block.kicker|default(null) %}
+    <p class="kicker mb-4 {{ theme.dark ? 'text-cream/80' : '' }}">{{ block.kicker }}</p>
+    {%- endif %}
+    {%- if block.title|default(null) %}
+    <h2 class="heading-xl max-w-5xl">{{ block.title }}</h2>
+    {%- endif %}
+    {%- if block.text|default(null) %}
+    <div class="mt-6 max-w-2xl space-y-4 text-lg opacity-85 sm:text-xl">{{ block.text|markdown_to_html }}</div>
+    {%- endif %}
+    {%- if block.buttons|default(null) %}
+    <div class="mt-10">{{ coffee.buttons(block.buttons, theme.dark ? 'light' : 'dark') }}</div>
+    {%- endif %}
+  </div>
+</section>

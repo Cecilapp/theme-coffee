@@ -1,0 +1,20 @@
+{#- Visual card: image with title overlay. item: {title, text, image, url, label}, ratio: portrait | landscape | square -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+{%- set ratios = {'portrait': 'aspect-[3/4]', 'landscape': 'aspect-video', 'square': 'aspect-square'} -%}
+{%- set tag = item.url|default(null) ? 'a' : 'div' -%}
+<{{ tag }}{% if item.url|default(null) %} href="{{ url(item.url) }}"{% endif %} class="group relative isolate flex {{ ratios[ratio|default('portrait')]|default(ratios.portrait) }} flex-col justify-end overflow-hidden rounded-3xl bg-night p-6 text-cream">
+  {%- if item.image|default(null) %}
+  {{ coffee.image(item.image, {width: 800, class: 'absolute inset-0 -z-10 size-full object-cover transition duration-700 group-hover:scale-105'}) }}
+  {%- endif %}
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-ink/90 via-ink/20 to-transparent transition duration-500 group-hover:from-coffee-dark/90"></div>
+  {%- if item.label|default(null) %}
+  <p class="kicker mb-2 text-coffee-light group-hover:text-cream">{{ item.label }}</p>
+  {%- endif %}
+  <h3 class="heading-md">{{ item.title }}</h3>
+  {%- if item.text|default(null) %}
+  <p class="mt-2 line-clamp-2 text-cream/80">{{ item.text }}</p>
+  {%- endif %}
+  {%- if item.url|default(null) %}
+  <span class="absolute top-5 right-5 flex size-11 translate-y-2 items-center justify-center rounded-full bg-cream text-ink opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100">{{ coffee.icon('arrow-right') }}</span>
+  {%- endif %}
+</{{ tag }}>

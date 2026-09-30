@@ -1,0 +1,29 @@
+{#- Cards: a grid of visual cards (products, projects, teams…).
+    Items come from a section (`block.section`: section id) and/or `block.items`: [{title, text, image, url, label}]
+    block.limit: max number of cards (default 8)
+    block.columns: 2 | 3 | 4 (default 4)
+    block.ratio: portrait (default) | landscape | square -#}
+{%- set items = [] -%}
+{%- if block.section|default(null) and site.page(block.section) -%}
+  {%- for p in site.page(block.section).pages.showable -%}
+    {%- set items = items|merge([{title: p.title, text: p.description|default(null), image: p.image|default(null), url: p, label: p.kicker|default(null)}]) -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- set items = (items|merge(block.items|default([])))|slice(0, block.limit|default(8)) -%}
+{%- set columns = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+} -%}
+<section id="{{ anchor }}" class="block-stack pb-24 {{ theme.classes }}">
+  <div class="container-coffee">
+    {{- include('partials/block-heading.html.twig') }}
+    <ul class="grid gap-5 {{ columns[block.columns|default(4)]|default(columns[4]) }}">
+      {%- for item in items %}
+      <li data-reveal style="transition-delay: {{ (loop.index0 % 4) * 80 }}ms">
+        {{- include('partials/card.html.twig', {item: item, ratio: block.ratio|default('portrait')}) }}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>

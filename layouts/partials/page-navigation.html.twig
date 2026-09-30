@@ -1,0 +1,20 @@
+{#- Navigation between the pages of a section (previous / next) -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+{%- if page.type == 'page' and page.section and (page.prev is defined or page.next is defined) %}
+<nav class="mx-auto mt-16 grid max-w-3xl gap-4 border-t border-ink/10 pt-10 sm:grid-cols-2" aria-label="{{ 'Pages navigation'|trans }}">
+  {%- if page.prev is defined and page.prev %}
+  <a href="{{ url(page.prev) }}" rel="prev" class="group flex flex-col gap-2 rounded-3xl bg-sand p-6 transition hover:bg-ink hover:text-cream">
+    <span class="kicker inline-flex items-center gap-2">{{ coffee.icon('arrow-left', 'size-4 transition group-hover:-translate-x-1') }} {{ 'Previous'|trans }}</span>
+    <span class="heading text-xl">{{ page.prev.title }}</span>
+  </a>
+  {%- else %}
+  <span></span>
+  {%- endif %}
+  {%- if page.next is defined and page.next %}
+  <a href="{{ url(page.next) }}" rel="next" class="group flex flex-col items-end gap-2 rounded-3xl bg-sand p-6 text-right transition hover:bg-ink hover:text-cream">
+    <span class="kicker inline-flex items-center gap-2">{{ 'Next'|trans }} {{ coffee.icon('arrow-right', 'size-4 transition group-hover:translate-x-1') }}</span>
+    <span class="heading text-xl">{{ page.next.title }}</span>
+  </a>
+  {%- endif %}
+</nav>
+{%- endif %}

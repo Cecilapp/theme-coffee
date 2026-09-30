@@ -1,0 +1,92 @@
+title: Acme Group
+baseline: Crafting bold experiences, together.
+description: Demo of the Coffee theme for Cecil.
+baseurl: http://localhost:8000/
+theme:
+  - coffee
+coffee:
+  logo: images/logo.svg
+  header:
+    button:
+      label: Contact
+      url: /contact/
+  socials: &socials
+    - {name: x, url: 'https://x.com/'}
+    - {name: bluesky, url: 'https://bsky.app/'}
+    - {name: linkedin, url: 'https://www.linkedin.com/'}
+    - {name: youtube, url: 'https://www.youtube.com/'}
+  company: |
+    **Acme Group Inc.**
+    42 Roast Street, Stockholm, Sweden
+    Reg. no. 556000-0000
+language: en
+languages:
+  - code: en
+    name: English
+    locale: en_US
+  - code: fr
+    name: Français
+    locale: fr_FR
+    config:
+      baseline: Créer ensemble des expériences audacieuses.
+      coffee:
+        logo: images/logo.svg
+        socials: *socials
+        header:
+          button:
+            label: Contact
+            url: /fr/contact/
+        company: |
+          **Acme Group SA**
+          12 rue du Café, 75011 Paris, France
+          RCS Paris 123 456 789
+      menus:
+        main:
+          - {id: about, name: À propos, url: /fr/about/, weight: 10}
+          - {id: products, name: Produits, url: /fr/products/, weight: 20}
+          - {id: company, name: Groupe, url: /fr/about/, weight: 30}
+          - {id: news, name: Actualités, url: /fr/news/, weight: 40}
+          - {id: careers, name: Carrières, url: /fr/careers/, weight: 50}
+        company:
+          - {id: teams, name: Nos équipes, url: /fr/about/#teams, weight: 10}
+          - {id: figures, name: Chiffres clés, url: /fr/about/#figures, weight: 20}
+          - {id: values, name: Nos valeurs, url: /fr/about/#values, weight: 30}
+        footer:
+          - {id: explore, name: Explorer, url: /fr/, weight: 10}
+          - {id: group, name: Groupe, url: /fr/about/, weight: 20}
+        explore:
+          - {id: products, name: Produits, url: /fr/products/, weight: 10}
+          - {id: news, name: Actualités, url: /fr/news/, weight: 20}
+          - {id: careers, name: Carrières, url: /fr/careers/, weight: 30}
+        group:
+          - {id: about, name: À propos, url: /fr/about/, weight: 10}
+          - {id: contact, name: Contact, url: /fr/contact/, weight: 20}
+        legal:
+          - {id: privacy, name: Confidentialité, url: /fr/privacy/, weight: 10}
+menus:
+  main:
+    - {id: about, name: About, url: /about/, weight: 10}
+    - {id: products, name: Products, url: /products/, weight: 20}
+    - {id: company, name: Company, url: /about/, weight: 30}
+    - {id: news, name: News, url: /news/, weight: 40}
+    - {id: careers, name: Careers, url: /careers/, weight: 50}
+  # children of the "company" entry (dropdown)
+  company:
+    - {id: teams, name: Our teams, url: /about/#teams, weight: 10}
+    - {id: figures, name: Key figures, url: /about/#figures, weight: 20}
+    - {id: values, name: Our values, url: /about/#values, weight: 30}
+  footer:
+    - {id: explore, name: Explore, url: /, weight: 10}
+    - {id: group, name: Company, url: /about/, weight: 20}
+  explore:
+    - {id: products, name: Products, url: /products/, weight: 10}
+    - {id: news, name: News, url: /news/, weight: 20}
+    - {id: careers, name: Careers, url: /careers/, weight: 30}
+  group:
+    - {id: about, name: About, url: /about/, weight: 10}
+    - {id: contact, name: Contact, url: /contact/, weight: 20}
+  legal:
+    - {id: privacy, name: Privacy notice, url: /privacy/, weight: 10}
+pages:
+  pagination:
+    max: 9

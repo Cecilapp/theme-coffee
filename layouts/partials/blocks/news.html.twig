@@ -1,0 +1,19 @@
+{#- News: latest pages of a section.
+    block.section: section id (default: news), block.limit (default 3) -#}
+{%- set section = site.page(block.section|default('news')) -%}
+{%- set pages = section ? section.pages.showable|sort_by_date|slice(0, block.limit|default(3)) : [] -%}
+{%- if block.buttons is not defined and section -%}
+  {%- set block = block|merge({buttons: {label: 'All news'|trans, url: section}}) -%}
+{%- endif -%}
+<section id="{{ anchor }}" class="block-stack pb-24 {{ theme.classes }}">
+  <div class="container-coffee">
+    {{- include('partials/block-heading.html.twig') }}
+    <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {%- for p in pages %}
+      <li data-reveal style="transition-delay: {{ loop.index0 * 80 }}ms">
+        {{- include('partials/news-card.html.twig', {p: p, dark: theme.dark}) }}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>

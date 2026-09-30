@@ -1,0 +1,23 @@
+{#- Not found page -#}
+{%- extends '_default/page.html.twig' %}
+
+{%- block hero %}
+<header class="relative isolate flex min-h-svh items-center overflow-hidden bg-ink pt-24 text-cream">
+  <div class="container-coffee animate-fade-up text-center">
+    <p class="heading text-[10rem] leading-none text-coffee sm:text-[16rem]">404</p>
+    <h1 class="heading-lg mt-4">{{ page.title|default('Page not found'|trans) }}</h1>
+    <div class="mx-auto mt-6 max-w-xl text-lg text-cream/75">
+      {%- if page.content is not empty %}
+      {{ page.content }}
+      {%- else %}
+      <p>{{ "Looks like you've followed a broken link or entered a URL that doesn't exist on this site."|trans }}</p>
+      {%- endif %}
+    </div>
+    <div class="mt-10 flex justify-center">
+      <a href="{{ url('/') }}" class="btn-primary">{{ 'Back to home page'|trans }}</a>
+    </div>
+  </div>
+</header>
+{%- endblock hero %}
+
+{%- block content %}{% endblock %}

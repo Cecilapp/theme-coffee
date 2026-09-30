@@ -1,0 +1,28 @@
+{#- Logos: a grid of tiles with a logo (teams, brands, partners, subsidiaries…).
+    block.items: [{name, image, url, text}] -#}
+{%- import 'partials/macros.html.twig' as coffee -%}
+<section id="{{ anchor }}" class="block-stack pb-24 {{ theme.classes }}">
+  <div class="container-coffee">
+    {{- include('partials/block-heading.html.twig', {align: 'center', buttons: false}) }}
+    <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      {%- for item in block.items|default([]) %}
+        {%- set tag = item.url|default(null) ? 'a' : 'div' %}
+      <li data-reveal style="transition-delay: {{ (loop.index0 % 5) * 60 }}ms">
+        <{{ tag }}{% if item.url|default(null) %} href="{{ url(item.url) }}"{% endif %} class="group flex aspect-square flex-col items-center justify-center gap-4 rounded-3xl p-6 text-center transition duration-300 {{ theme.dark ? 'bg-cream/5 hover:bg-cream/10' : 'bg-ink/5 hover:bg-ink hover:text-cream' }}">
+          {%- if item.image|default(null) %}
+          {{ coffee.image(item.image, {width: 400, alt: item.name|default(''), class: 'max-h-20 w-auto object-contain transition duration-300 group-hover:scale-110'}) }}
+          {%- else %}
+          <span class="heading text-xl">{{ item.name }}</span>
+          {%- endif %}
+          {%- if item.text|default(null) %}
+          <span class="text-sm opacity-70">{{ item.text }}</span>
+          {%- endif %}
+        </{{ tag }}>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- if block.buttons|default(null) %}
+    <div class="mt-12 flex justify-center">{{ coffee.buttons(block.buttons, theme.dark ? 'light' : 'dark') }}</div>
+    {%- endif %}
+  </div>
+</section>
