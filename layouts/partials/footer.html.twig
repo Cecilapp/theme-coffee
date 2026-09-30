@@ -24,7 +24,7 @@
         <ul class="mt-8 flex flex-wrap gap-2" aria-label="{{ 'Social networks'|trans }}">
           {%- for name, network in socials %}
           <li>
-            <a href="{{ network.url }}" target="_blank" rel="noopener me" class="flex size-11 items-center justify-center rounded-full bg-cream/10 transition hover:bg-coffee" title="{{ network.name ?? name|capitalize }}">
+            <a href="{{ url(network.url) }}" target="_blank" rel="noopener me" class="flex size-11 items-center justify-center rounded-full bg-cream/10 transition hover:bg-coffee" title="{{ network.name ?? name|capitalize }}">
               {{- coffee.social_icon(name) }}<span class="sr-only">{{ network.name ?? name|capitalize }}</span>
             </a>
           </li>
@@ -69,7 +69,7 @@
         {%- endfor %}
       </ul>
       {%- endif %}
-      <p><a href="https://cecil.app" class="transition hover:text-cream">{{ 'Powered by %powered_by%'|trans({'%powered_by%': 'Cecil'}) }}</a></p>
+      <p><a href="{{ url(cecil.url) }}" class="transition hover:text-cream">{{ 'Powered by %powered_by%'|trans({'%powered_by%': 'Cecil'}) }}</a></p>
     </div>
   </div>
 </footer>
