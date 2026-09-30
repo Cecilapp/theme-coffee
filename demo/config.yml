@@ -10,15 +10,22 @@ coffee:
     button:
       label: Contact
       url: /contact/
-  socials: &socials
-    - {name: x, url: 'https://x.com/'}
-    - {name: bluesky, url: 'https://bsky.app/'}
-    - {name: linkedin, url: 'https://www.linkedin.com/'}
-    - {name: youtube, url: 'https://www.youtube.com/'}
   company: |
     **Acme Group Inc.**
     42 Roast Street, Stockholm, Sweden
     Reg. no. 556000-0000
+social:
+  twitter:
+    url: 'https://x.com/'
+    name: X
+  bluesky:
+    url: 'https://bsky.app/'
+  linkedin:
+    url: 'https://www.linkedin.com/'
+    name: LinkedIn
+  youtube:
+    url: 'https://www.youtube.com/'
+    name: YouTube
 language: en
 languages:
   - code: en
@@ -31,7 +38,6 @@ languages:
       baseline: Créer ensemble des expériences audacieuses.
       coffee:
         logo: images/logo.svg
-        socials: *socials
         header:
           button:
             label: Contact

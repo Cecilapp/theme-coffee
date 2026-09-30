@@ -18,12 +18,14 @@
         {%- if site.coffee.company|default(null) %}
         <div class="mt-6 space-y-2 text-sm text-cream/60">{{ site.coffee.company|trim|nl2br|markdown_to_html }}</div>
         {%- endif %}
-        {%- if site.coffee.socials|default([])|length %}
+        {#- social networks with an URL, from the `social` configuration (also used by metatags) #}
+        {%- set socials = (site.social ?? {})|filter(network => network.url is defined and network.url is not empty) %}
+        {%- if socials|length %}
         <ul class="mt-8 flex flex-wrap gap-2" aria-label="{{ 'Social networks'|trans }}">
-          {%- for social in site.coffee.socials %}
+          {%- for name, network in socials %}
           <li>
-            <a href="{{ social.url }}" target="_blank" rel="noopener me" class="flex size-11 items-center justify-center rounded-full bg-cream/10 transition hover:bg-coffee" title="{{ social.name|capitalize }}">
-              {{- coffee.social_icon(social.name) }}<span class="sr-only">{{ social.name|capitalize }}</span>
+            <a href="{{ network.url }}" target="_blank" rel="noopener me" class="flex size-11 items-center justify-center rounded-full bg-cream/10 transition hover:bg-coffee" title="{{ network.name ?? name|capitalize }}">
+              {{- coffee.social_icon(name) }}<span class="sr-only">{{ network.name ?? name|capitalize }}</span>
             </a>
           </li>
           {%- endfor %}

@@ -40,14 +40,30 @@ coffee:
       label: Contact
       url: /contact/
   dated_sections: [news, blog] # sections whose pages display their date
-  socials:                   # icons: x, bluesky, facebook, instagram, linkedin, youtube, github, mastodon, discord, twitch, tiktok
-    - {name: x, url: 'https://x.com/acme'}
-    - {name: youtube, url: 'https://www.youtube.com/@acme'}
   company: |                 # Markdown, displayed in the footer
     **Acme Group Inc.**
     42 Roast Street, Stockholm, Sweden
   copyright: Acme Group      # defaults to the site title
 ```
+
+### Social networks
+
+The footer displays a link for each network of the Cecil [`social`](https://cecil.app/documentation/configuration/#metatags) configuration (also used by meta tags) that has an `url`:
+
+```yaml
+social:
+  twitter:
+    url: https://x.com/acme
+    site: acme               # used by meta tags
+    name: X                  # optional label, defaults to the capitalized key
+  mastodon:
+    url: https://mastodon.social/@acme
+  youtube:
+    url: https://www.youtube.com/@acme
+    name: YouTube
+```
+
+Keys with an icon: `twitter` (or `x`), `bluesky`, `facebook`, `instagram`, `linkedin`, `youtube`, `github`, `mastodon`, `discord`, `twitch` and `tiktok`.
 
 > [!NOTE]
 > A language `config` block replaces the whole `coffee` key: repeat the values you want to keep (YAML anchors help, see [`demo/config.yml`](demo/config.yml)).
