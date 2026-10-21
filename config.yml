@@ -1,9 +1,5 @@
 # Coffee theme default configuration
 # Override any of these values in your site's `config.yml`.
-pages:
-  body:
-    images:
-      class: rounded-2xl
 coffee:
   logo: ~          # path to a logo in `assets/` (e.g. `logo.svg`); the site title is displayed if empty
   header:
