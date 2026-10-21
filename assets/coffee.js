@@ -1,7 +1,5 @@
 /* Coffee theme for Cecil — progressive enhancements (no dependency) */
 (() => {
-  const root = document.documentElement;
-  root.classList.add('js');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Header: opaque when the page is scrolled */
@@ -48,14 +46,17 @@
     });
   });
 
-  /* Sliders: scroll-snap track + prev/next buttons, dots and optional autoplay */
+  /* Sliders: scroll-snap track + prev/next buttons, dots and optional autoplay (with pause button) */
   document.querySelectorAll('[data-slider]').forEach((slider) => {
     const track = slider.querySelector('[data-slider-track]');
     const slides = [...track.children];
     const dots = [...slider.querySelectorAll('[data-slider-dot]')];
+    const pauseButton = slider.querySelector('[data-slider-pause]');
     const delay = parseInt(slider.dataset.autoplay || '0', 10);
+    const autoplay = delay > 0 && !reducedMotion && slides.length > 1;
     let current = 0;
     let timer = null;
+    let paused = false;
 
     const goTo = (index) => {
       current = (index + slides.length) % slides.length;
@@ -69,16 +70,28 @@
     const stop = () => timer && clearInterval(timer);
     const start = () => {
       stop();
-      if (delay > 0 && !reducedMotion && slides.length > 1) timer = setInterval(() => goTo(current + 1), delay);
+      if (autoplay && !paused) timer = setInterval(() => goTo(current + 1), delay);
+    };
+    const setPaused = (value) => {
+      paused = value;
+      pauseButton?.setAttribute('aria-pressed', String(paused));
+      paused ? stop() : start();
     };
 
     slider.querySelector('[data-slider-prev]')?.addEventListener('click', () => goTo(current - 1));
     slider.querySelector('[data-slider-next]')?.addEventListener('click', () => goTo(current + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
     track.addEventListener('scroll', () => window.requestAnimationFrame(update), { passive: true });
+    if (pauseButton) {
+      pauseButton.hidden = !autoplay;
+      pauseButton.addEventListener('click', () => setPaused(!paused));
+    }
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', start);
     slider.addEventListener('focusin', stop);
+    slider.addEventListener('focusout', (e) => !slider.contains(e.relatedTarget) && start());
+    /* touch interaction: the user takes control, autoplay stops */
+    slider.addEventListener('touchstart', () => setPaused(true), { passive: true });
     update();
     start();
   });

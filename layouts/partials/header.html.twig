@@ -5,7 +5,7 @@
 {%- set home = url(site.home) -%}
 {%- set menu = site.menus.main is defined ? site.menus.main|sort_by_weight : [] -%}
 {%- set cta = site.coffee.header.button|default(null) -%}
-<header data-header class="{{ site.coffee.header.sticky|default(true) ? 'fixed' : 'absolute' }} inset-x-0 top-0 z-50 text-cream transition duration-300">
+<header data-header class="{{ (site.coffee.header.sticky ?? true) ? 'fixed' : 'absolute' }} inset-x-0 top-0 z-50 text-cream transition duration-300">
   <div class="container-coffee flex h-20 items-center justify-between gap-6">
     {#- logo #}
     <a href="{{ home }}" class="shrink-0" aria-label="{{ site.title }}"{% if page.type == 'homepage' %} aria-current="page"{% endif %}>
@@ -25,7 +25,7 @@
         <li class="group/dd relative"{% if children|length %} data-dropdown{% endif %}>
           {%- if children|length %}
           <div>
-            <button type="button" aria-expanded="false" aria-haspopup="true" class="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wider transition hover:bg-cream/10{% if active %} text-coffee-light{% endif %}">
+            <button type="button" aria-expanded="false" class="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wider transition hover:bg-cream/10{% if active %} text-coffee-light{% endif %}">
               {{- entry.name }} {{ coffee.icon('chevron-down', 'size-4 transition group-hover/dd:rotate-180') -}}
             </button>
             <div class="invisible absolute left-0 top-full min-w-60 pt-3 opacity-0 transition duration-200 group-hover/dd:visible group-hover/dd:opacity-100 group-data-open/dd:visible group-data-open/dd:opacity-100">
@@ -48,12 +48,14 @@
     <div class="flex items-center gap-2">
       {#- language switcher #}
       {%- if page.translations|default([])|length %}
-      <ul class="hidden items-center gap-1 sm:flex" aria-label="{{ 'Languages'|trans }}">
+      <div class="hidden items-center gap-1 sm:flex">
         {{- coffee.icon('globe', 'size-4 opacity-70') }}
-        {%- for translation in page.translations %}
-        <li><a href="{{ url(translation) }}" hreflang="{{ translation.language }}" lang="{{ translation.language }}" class="rounded-full px-2 py-1 text-sm font-bold uppercase transition hover:bg-cream/10">{{ translation.language }}</a></li>
-        {%- endfor %}
-      </ul>
+        <ul class="flex items-center gap-1" aria-label="{{ 'Languages'|trans }}">
+          {%- for translation in page.translations %}
+          <li><a href="{{ url(translation) }}" hreflang="{{ translation.language }}" lang="{{ translation.language }}" class="rounded-full px-2 py-1 text-sm font-bold uppercase transition hover:bg-cream/10">{{ translation.language }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
       {%- endif %}
       {%- if cta %}
       <div class="hidden sm:block">{{ coffee.buttons(cta) }}</div>
@@ -93,7 +95,7 @@
     </ul>
     <div class="container-coffee flex flex-wrap items-center gap-4 pb-10">
       {%- for translation in page.translations|default([]) %}
-      <a href="{{ url(translation) }}" hreflang="{{ translation.language }}" class="btn-outline">{{ site.language.name(translation.language) }}</a>
+      <a href="{{ url(translation) }}" hreflang="{{ translation.language }}" lang="{{ translation.language }}" class="btn-outline">{{ site.language.name(translation.language) }}</a>
       {%- endfor %}
       {%- if cta %}{{ coffee.buttons(cta) }}{% endif %}
     </div>

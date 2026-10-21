@@ -97,8 +97,7 @@
 
 /* Header: transparent over the hero, opaque when scrolled or when the menu is open */
 [data-header][data-scrolled='true'],
-[data-header][data-menu-open='true'],
-[data-header][data-solid='true'] {
+[data-header][data-menu-open='true'] {
   @apply bg-ink/95 shadow-lg shadow-black/20 backdrop-blur;
 }
 
