@@ -2,7 +2,7 @@
 title: Bienvenue à Maple Studio
 date: 2026-09-10
 description: Une équipe talentueuse de Montréal rejoint la famille.
-image: images/news-2.jpg
+image: images/news-2.png
 ---
 Une équipe talentueuse de Montréal rejoint la famille.
 

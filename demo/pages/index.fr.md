@@ -8,13 +8,13 @@ blocks:
       - kicker: Disponible
         title: Northwind 2.0 est arrivé
         text: Une toute nouvelle expérience, reconstruite avec notre communauté.
-        image: images/hero-1.jpg
+        image: images/hero-1.png
         buttons:
           - {label: Découvrir, url: /products/northwind/}
       - kicker: Bientôt
         title: Summit, la prochaine ascension
         text: Rejoignez l'accès anticipé et façonnez la suite.
-        image: images/hero-2.jpg
+        image: images/hero-2.png
         buttons:
           - {label: En savoir plus, url: /products/summit/}
   - type: cards
@@ -27,13 +27,13 @@ blocks:
     title: Dites bonjour à la famille
     text: |
       Nous pensons que les meilleurs produits naissent de **petites équipes autonomes** qui aiment ce qu'elles font.
-    image: images/about.jpg
+    image: images/about.png
     buttons: {label: Nous rencontrer, url: /about/}
   - type: news
     kicker: Récemment
     title: Actualités
   - type: cta
-    image: images/careers.jpg
+    image: images/careers.png
     kicker: Carrières
     title: Rejoignez l'équipe
     buttons:

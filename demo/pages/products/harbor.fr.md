@@ -2,7 +2,7 @@
 title: Harbor
 kicker: Stratégie
 description: Bâtissez le port le plus animé du monde connu.
-image: images/product-4.jpg
+image: images/product-4.png
 weight: 40
 ---
 Harbor est l'un de nos produits phares, conçu avec passion par une petite équipe.

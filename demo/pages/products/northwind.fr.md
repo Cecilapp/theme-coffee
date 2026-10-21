@@ -2,7 +2,7 @@
 title: Northwind
 kicker: Aventure
 description: Naviguez sur les mers du nord dans un vaste monde ouvert.
-image: images/product-1.jpg
+image: images/product-1.png
 weight: 10
 ---
 Northwind est l'un de nos produits phares, conçu avec passion par une petite équipe.

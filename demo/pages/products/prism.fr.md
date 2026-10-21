@@ -2,7 +2,7 @@
 title: Prism
 kicker: Outil créatif
 description: Concevez, prototypez et partagez, au même endroit.
-image: images/product-3.jpg
+image: images/product-3.png
 weight: 30
 ---
 Prism est l'un de nos produits phares, conçu avec passion par une petite équipe.

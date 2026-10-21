@@ -2,7 +2,7 @@
 title: Summit
 kicker: Accès anticipé
 description: Une expérience d'escalade coopérative jusqu'à quatre joueurs.
-image: images/product-2.jpg
+image: images/product-2.png
 weight: 20
 ---
 Summit est l'un de nos produits phares, conçu avec passion par une petite équipe.

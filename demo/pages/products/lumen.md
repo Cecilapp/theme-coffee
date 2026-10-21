@@ -2,7 +2,7 @@
 title: Lumen
 kicker: Puzzle
 description: Bend the light to solve handcrafted puzzles.
-image: images/product-5.jpg
+image: images/product-5.png
 weight: 50
 blocks:
   - type: stats

@@ -9,20 +9,20 @@ blocks:
       - kicker: Out now
         title: Northwind 2.0 has landed
         text: A brand new experience, rebuilt from the ground up with our community.
-        image: images/hero-1.jpg
+        image: images/hero-1.png
         buttons:
           - {label: Discover, url: /products/northwind/}
           - {label: Watch the trailer, url: 'https://www.youtube.com/', style: outline}
       - kicker: Coming soon
         title: Summit, the next big climb
         text: Join the early access program and shape what comes next.
-        image: images/hero-2.jpg
+        image: images/hero-2.png
         buttons:
           - {label: Learn more, url: /products/summit/}
       - kicker: Company
         title: A family of creators
         text: Ten studios, one shared passion for great craft.
-        image: images/hero-3.jpg
+        image: images/hero-3.png
         buttons:
           - {label: About us, url: /about/, style: light}
   - type: cards
@@ -55,7 +55,7 @@ blocks:
       We believe the best products come from **small, empowered teams** who love what they do.
 
       Our group gives each studio the freedom to create, and the support to grow.
-    image: images/about.jpg
+    image: images/about.png
     buttons: {label: Meet us, url: /about/}
   - type: news
     kicker: Latest
@@ -63,7 +63,7 @@ blocks:
     section: news
     limit: 3
   - type: cta
-    image: images/careers.jpg
+    image: images/careers.png
     kicker: Careers
     title: Join the crew
     text: We are always looking for curious, passionate people to join our studios.

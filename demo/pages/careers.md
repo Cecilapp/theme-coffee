@@ -2,7 +2,7 @@
 title: Careers
 kicker: Join the crew
 description: Grow with passionate people, in studios all around the world.
-image: images/careers.jpg
+image: images/careers.png
 blocks:
   - type: features
     theme: cream
@@ -18,9 +18,9 @@ blocks:
     columns: 3
     ratio: landscape
     items:
-      - {title: Senior Gameplay Programmer, label: Stockholm, image: images/product-1.jpg, url: /contact/}
-      - {title: 3D Environment Artist, label: Paris, image: images/product-2.jpg, url: /contact/}
-      - {title: Community Manager, label: Remote, image: images/product-3.jpg, url: /contact/}
+      - {title: Senior Gameplay Programmer, label: Stockholm, image: images/product-1.png, url: /contact/}
+      - {title: 3D Environment Artist, label: Paris, image: images/product-2.png, url: /contact/}
+      - {title: Community Manager, label: Remote, image: images/product-3.png, url: /contact/}
   - type: cta
     title: No position for you?
     text: Send us a spontaneous application, we would love to hear from you.

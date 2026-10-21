@@ -2,7 +2,7 @@
 title: Notre rapport annuel 2026
 date: 2026-07-15
 description: Une année record pour le groupe, portée par nos studios et notre communauté.
-image: images/news-4.jpg
+image: images/news-4.png
 ---
 Une année record pour le groupe, portée par nos studios et notre communauté.
 

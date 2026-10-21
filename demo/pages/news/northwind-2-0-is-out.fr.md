@@ -2,7 +2,7 @@
 title: Northwind 2.0 est disponible
 date: 2026-09-24
 description: La plus grosse mise à jour apporte de nouvelles mers, de nouveaux navires et une nouvelle histoire.
-image: images/news-1.jpg
+image: images/news-1.png
 ---
 La plus grosse mise à jour apporte de nouvelles mers, de nouveaux navires et une nouvelle histoire.
 

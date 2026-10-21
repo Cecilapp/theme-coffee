@@ -2,7 +2,7 @@
 title: About us
 kicker: The family
 description: A group of independent studios with a shared passion for great craft.
-image: images/team.jpg
+image: images/team.png
 blocks:
   - type: split
     kicker: Our story
@@ -11,7 +11,7 @@ blocks:
       Founded in a tiny office in 2010, Acme Group has grown into a family of ten studios and more than 600 people.
 
       We still share the same belief: **great products are made by happy teams**.
-    image: images/about.jpg
+    image: images/about.png
   - type: stats
     id: figures
     kicker: Key figures

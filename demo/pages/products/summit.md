@@ -2,7 +2,7 @@
 title: Summit
 kicker: Early access
 description: A cooperative climbing experience for up to four players.
-image: images/product-2.jpg
+image: images/product-2.png
 weight: 20
 blocks:
   - type: stats
