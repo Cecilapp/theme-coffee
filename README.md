@@ -2,6 +2,10 @@
 
 _Coffee_ is a corporate theme for [Cecil](https://cecil.app), powered by [Tailwind CSS](https://tailwindcss.com).
 
+![Coffee theme screenshot](docs/screenshot.png)
+
+**[Demo](https://cecilapp.github.io/theme-coffee/)**
+
 Pages are composed of **blocks** declared in front matter: hero slider, cards grid, logos, split, news, call to action, key figures, features and free text. Big uppercase headings, stacked rounded sections and a warm coffee palette.
 
 Features:
