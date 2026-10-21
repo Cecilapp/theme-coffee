@@ -2,7 +2,7 @@
 title: Carrières
 kicker: Rejoignez-nous
 description: Grandissez avec des passionnés, dans nos studios du monde entier.
-image: images/careers.jpg
+image: images/careers.png
 blocks:
   - type: features
     theme: cream

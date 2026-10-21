@@ -2,7 +2,7 @@
 title: Northwind
 kicker: Adventure
 description: Sail the northern seas in a vast open world.
-image: images/product-1.jpg
+image: images/product-1.png
 weight: 10
 blocks:
   - type: stats

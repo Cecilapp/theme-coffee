@@ -2,7 +2,7 @@
 title: Harbor
 kicker: Strategy
 description: Build the busiest port of the known world.
-image: images/product-4.jpg
+image: images/product-4.png
 weight: 40
 blocks:
   - type: stats

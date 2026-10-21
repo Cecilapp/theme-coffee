@@ -2,7 +2,7 @@
 title: Ember
 kicker: Action
 description: De l'action nerveuse dans un monde en flammes.
-image: images/product-6.jpg
+image: images/product-6.png
 weight: 60
 ---
 Ember est l'un de nos produits phares, conçu avec passion par une petite équipe.

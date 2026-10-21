@@ -2,7 +2,7 @@
 title: Lumen
 kicker: Puzzle
 description: Courbez la lumière pour résoudre des énigmes.
-image: images/product-5.jpg
+image: images/product-5.png
 weight: 50
 ---
 Lumen est l'un de nos produits phares, conçu avec passion par une petite équipe.

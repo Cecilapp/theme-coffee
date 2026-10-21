@@ -2,7 +2,7 @@
 title: Summit enters early access
 date: 2026-08-28
 description: Grab your rope and help us shape the future of Summit.
-image: images/news-3.jpg
+image: images/news-3.png
 ---
 Grab your rope and help us shape the future of Summit.
 
@@ -12,6 +12,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
 
 Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
 
-![A picture](/images/news-3.jpg)
+![A picture](/images/news-3.png)
 
 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.

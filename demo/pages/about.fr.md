@@ -2,14 +2,14 @@
 title: À propos
 kicker: La famille
 description: Un groupe de studios indépendants unis par la passion du travail bien fait.
-image: images/team.jpg
+image: images/team.png
 blocks:
   - type: split
     kicker: Notre histoire
     title: Tout a commencé autour d'un café
     text: |
       Fondé en 2010 dans un minuscule bureau, Acme Group réunit aujourd'hui dix studios et plus de 600 personnes.
-    image: images/about.jpg
+    image: images/about.png
   - type: stats
     id: figures
     kicker: Chiffres clés

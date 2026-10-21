@@ -2,7 +2,7 @@
 title: Summit entre en accès anticipé
 date: 2026-08-28
 description: Prenez votre corde et aidez-nous à façonner le futur de Summit.
-image: images/news-3.jpg
+image: images/news-3.png
 ---
 Prenez votre corde et aidez-nous à façonner le futur de Summit.
 

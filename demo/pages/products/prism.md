@@ -2,7 +2,7 @@
 title: Prism
 kicker: Creative tool
 description: Design, prototype and share, all in one place.
-image: images/product-3.jpg
+image: images/product-3.png
 weight: 30
 blocks:
   - type: stats

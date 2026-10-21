@@ -2,7 +2,7 @@
 title: Ember
 kicker: Action
 description: Fast-paced action in a world on fire.
-image: images/product-6.jpg
+image: images/product-6.png
 weight: 60
 blocks:
   - type: stats
